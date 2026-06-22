@@ -4,12 +4,14 @@ const path = require('path');
 const config = require('./config');
 const CleanupTask = require('./modules/cleanupTask');
 const DataStore = require('./modules/dataStore');
+const ChunkManager = require('./modules/chunkManager');
 
 const uploadRoutes = require('./routes/upload');
 const downloadRoutes = require('./routes/download');
 const adminRoutes = require('./routes/admin');
 
 DataStore.init();
+ChunkManager.init();
 
 const app = express();
 
@@ -66,6 +68,8 @@ process.on('SIGINT', () => {
   console.log('\n正在关闭服务...');
   DataStore.flush();
   DataStore.shutdown();
+  ChunkManager.flush();
+  ChunkManager.shutdown();
   server.close(() => {
     console.log('服务已关闭');
     process.exit(0);
@@ -78,6 +82,8 @@ process.on('SIGINT', () => {
 process.on('SIGTERM', () => {
   DataStore.flush();
   DataStore.shutdown();
+  ChunkManager.flush();
+  ChunkManager.shutdown();
   server.close(() => process.exit(0));
   setTimeout(() => process.exit(0), 2000);
 });

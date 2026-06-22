@@ -1,0 +1,17 @@
+[
+  {
+    "uploadId": "fadccf29-0083-4810-9c4a-36afc9768dc6",
+    "originalName": "test-large-file.zip",
+    "size": 209715200,
+    "mimetype": "application/zip",
+    "totalChunks": 40,
+    "chunkSize": 5242880,
+    "fileHash": null,
+    "receivedChunks": [],
+    "sessionDir": "D:\\code\\gy\\70\\70-未归类-6\\70-未归类-6\\uploads\\chunks\\fadccf29-0083-4810-9c4a-36afc9768dc6",
+    "createdAt": 1782116107095,
+    "lastActivity": 1782116107095,
+    "status": "uploading",
+    "mergedFilename": null
+  }
+]

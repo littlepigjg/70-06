@@ -4,6 +4,7 @@ const config = require('../config');
 const DataStore = require('./dataStore');
 const ExpiryChecker = require('./expiryChecker');
 const lockManager = require('./lockManager');
+const ChunkManager = require('./chunkManager');
 
 const MIN_DOWNLOAD_DURATION_MS = 30 * 1000;
 
@@ -90,6 +91,13 @@ class CleanupTask {
     const runId = Date.now();
     console.log(`[${new Date().toLocaleString()}] [清理 #${runId}] 开始扫描...`);
 
+    let expiredChunks = 0;
+    try {
+      expiredChunks = ChunkManager.cleanupExpiredSessions();
+    } catch (err) {
+      console.error(`  ✗ 清理过期分片会话失败: ${err.message}`);
+    }
+
     const shares = DataStore.getAllShares();
     let cleanedCount = 0;
     let skippedCount = 0;
@@ -123,8 +131,8 @@ class CleanupTask {
       }
     }
 
-    console.log(`[${new Date().toLocaleString()}] [清理 #${runId}] 完成: 删除=${cleanedCount}, 跳过=${skippedCount} (下载中=${downloadingCount}, 保护中=${protectedCount}), 总计=${shares.length}`);
-    return { cleanedCount, skippedCount, downloadingCount, protectedCount, totalCount: shares.length, runId };
+    console.log(`[${new Date().toLocaleString()}] [清理 #${runId}] 完成: 删除=${cleanedCount}, 跳过=${skippedCount} (下载中=${downloadingCount}, 保护中=${protectedCount}), 清理过期分片=${expiredChunks}, 总计=${shares.length}`);
+    return { cleanedCount, skippedCount, downloadingCount, protectedCount, totalCount: shares.length, expiredChunks, runId };
   }
 
   static start() {
