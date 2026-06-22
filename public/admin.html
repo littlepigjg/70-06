@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文件快递柜 - 后台管理</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container admin-container">
+    <h1>🔧 后台管理</h1>
+    <p class="subtitle">查看所有分享记录和下载日志</p>
+
+    <div class="stats-grid" id="statsGrid"></div>
+
+    <div class="admin-actions">
+      <button class="btn btn-secondary btn-small" id="refreshBtn">🔄 刷新数据</button>
+      <button class="btn btn-secondary btn-small" id="cleanupBtn">🧹 立即清理过期文件</button>
+    </div>
+
+    <div class="nav-tabs">
+      <button class="nav-tab active" data-tab="shares">📦 分享记录</button>
+      <button class="nav-tab" data-tab="logs">📋 下载日志</button>
+    </div>
+
+    <div class="tab-content active" id="sharesTab">
+      <div class="table-container">
+        <table id="sharesTable">
+          <thead>
+            <tr>
+              <th>提取码</th>
+              <th>文件名</th>
+              <th>大小</th>
+              <th>上传时间</th>
+              <th>过期时间</th>
+              <th>已下载</th>
+              <th>最大次数</th>
+              <th>状态</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody id="sharesTbody"></tbody>
+        </table>
+      </div>
+      <div class="empty-state" id="sharesEmpty" style="display: none;">
+        <div class="empty-icon">📦</div>
+        <div>暂无分享记录</div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="logsTab">
+      <div class="table-container">
+        <table id="logsTable">
+          <thead>
+            <tr>
+              <th>时间</th>
+              <th>提取码</th>
+              <th>文件名</th>
+              <th>IP地址</th>
+              <th>浏览器信息</th>
+            </tr>
+          </thead>
+          <tbody id="logsTbody"></tbody>
+        </table>
+      </div>
+      <div class="empty-state" id="logsEmpty" style="display: none;">
+        <div class="empty-icon">📋</div>
+        <div>暂无下载日志</div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+      <a href="/" style="color: #667eea; text-decoration: none; font-size: 14px;">← 上传文件</a>
+      <span style="color: #ccc; margin: 0 10px;">|</span>
+      <a href="/download.html" style="color: #667eea; text-decoration: none; font-size: 14px;">下载文件 →</a>
+    </div>
+  </div>
+
+  <script src="/js/admin.js"></script>
+</body>
+</html>

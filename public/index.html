@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文件快递柜 - 创建分享</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>📦 文件快递柜</h1>
+    <p class="subtitle">上传文件，生成提取码，轻松分享</p>
+
+    <div class="alert alert-error" id="errorAlert"></div>
+    <div class="alert alert-success" id="successAlert"></div>
+
+    <div class="upload-area" id="uploadArea">
+      <div class="upload-icon">📁</div>
+      <div class="upload-text">点击或拖拽文件到此处上传</div>
+      <div class="upload-hint">最大支持 1GB 文件</div>
+      <input type="file" id="fileInput">
+    </div>
+
+    <div class="file-info" id="fileInfo">
+      <div class="file-name" id="fileName"></div>
+      <div class="file-size" id="fileSize"></div>
+    </div>
+
+    <div class="settings" id="settings" style="display: none;">
+      <div class="setting-row">
+        <label for="expiryHours">有效期</label>
+        <select id="expiryHours">
+          <option value="1">1 小时</option>
+          <option value="6">6 小时</option>
+          <option value="24" selected>24 小时</option>
+          <option value="72">3 天</option>
+          <option value="168">7 天</option>
+          <option value="720">30 天</option>
+        </select>
+      </div>
+
+      <div class="setting-row">
+        <label for="maxDownloads">下载次数</label>
+        <select id="maxDownloads">
+          <option value="1">1 次</option>
+          <option value="3">3 次</option>
+          <option value="5">5 次</option>
+          <option value="10" selected>10 次</option>
+          <option value="50">50 次</option>
+          <option value="-1">不限制</option>
+        </select>
+      </div>
+
+      <div class="setting-row">
+        <label for="customCode">自定义提取码</label>
+        <input type="text" id="customCode" placeholder="留空则自动生成" maxlength="8">
+      </div>
+      <div class="hint" style="margin-left: 135px;">4-8位大写字母和数字，留空自动生成</div>
+    </div>
+
+    <div class="progress-container" id="progressContainer">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-text" id="progressText">准备上传...</div>
+    </div>
+
+    <button class="btn" id="uploadBtn" disabled>上传并生成分享</button>
+
+    <div class="result-card" id="resultCard">
+      <div class="result-title">🎉 分享创建成功！</div>
+      <div class="result-code" id="resultCode"></div>
+      <div class="result-info">📄 文件：<span id="resultFileName"></span></div>
+      <div class="result-info">📦 大小：<span id="resultFileSize"></span></div>
+      <div class="result-info">⏰ 有效期至：<span id="resultExpiry"></span></div>
+      <div class="result-info">🔢 可下载次数：<span id="resultMaxDownloads"></span></div>
+      <div class="result-link" id="resultLink" title="点击复制链接"></div>
+      <button class="btn copy-btn" id="copyLinkBtn">复制链接</button>
+      <button class="btn copy-btn" id="copyCodeBtn" style="margin-top: 10px;">复制提取码</button>
+      <button class="btn" id="createNewBtn" style="margin-top: 15px;">创建新分享</button>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+      <a href="/download.html" style="color: #667eea; text-decoration: none; font-size: 14px;">去下载文件 →</a>
+      <span style="color: #ccc; margin: 0 10px;">|</span>
+      <a href="/admin.html" style="color: #667eea; text-decoration: none; font-size: 14px;">后台管理</a>
+    </div>
+  </div>
+
+  <script src="/js/upload.js"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文件快递柜 - 下载文件</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>📥 文件下载</h1>
+    <p class="subtitle">输入提取码下载文件</p>
+
+    <div class="alert alert-error" id="errorAlert"></div>
+    <div class="alert alert-success" id="successAlert"></div>
+
+    <div class="download-form" id="downloadForm">
+      <input 
+        type="text" 
+        class="code-input" 
+        id="codeInput" 
+        placeholder="请输入提取码"
+        maxlength="8"
+        autocomplete="off"
+      >
+      <button class="btn" id="queryBtn">查询文件</button>
+    </div>
+
+    <div class="file-preview" id="filePreview">
+      <div class="preview-header">
+        <div class="preview-icon" id="fileIcon">📄</div>
+        <div class="preview-info">
+          <h3 id="previewFileName"></h3>
+          <p>
+            <span class="status-badge" id="statusBadge"></span>
+          </p>
+        </div>
+      </div>
+
+      <div class="preview-details">
+        <div class="detail-item">
+          <div class="detail-label">文件大小</div>
+          <div class="detail-value" id="previewFileSize"></div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">已下载</div>
+          <div class="detail-value" id="previewDownloadCount"></div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">剩余次数</div>
+          <div class="detail-value" id="previewRemaining"></div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">有效期至</div>
+          <div class="detail-value" id="previewExpiry"></div>
+        </div>
+      </div>
+
+      <div style="margin-top: 20px;">
+        <button class="btn" id="downloadBtn">立即下载</button>
+        <button class="btn btn-secondary" id="backBtn" style="margin-top: 10px;">返回</button>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+      <a href="/" style="color: #667eea; text-decoration: none; font-size: 14px;">← 上传文件</a>
+      <span style="color: #ccc; margin: 0 10px;">|</span>
+      <a href="/admin.html" style="color: #667eea; text-decoration: none; font-size: 14px;">后台管理</a>
+    </div>
+  </div>
+
+  <script src="/js/download.js"></script>
+</body>
+</html>
